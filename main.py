@@ -1,11 +1,12 @@
 import smtplib
 import pandas as pd
 from datetime import datetime
+import random
 
 SMTP_SERVER = "smtp.gmail.com"
 SMTP_PORT = 587
 GMAIL_USER = "mohsinmalik13580@gmail.com"
-GMAIL_PASSWORD = "bjgi dbxm ecma kqgy"
+GMAIL_PASSWORD = "appl lyhg gqqm vwhq"
 
 def send_email(email, subject, motivationalquote):
     try:
@@ -24,20 +25,17 @@ def check_day():
     date = datetime.now()
     day = date.strftime("%A")
 
-    if day == "Monday" :
+    if day == "Thursday" :
 
         emails = pd.read_csv("emails.csv")
+        motivationalquotes = pd.read_csv("motivationalquotes.csv")
+
+        motivationalquote = random.choice(motivationalquotes['motivationalquote'])
 
         for index, row in emails.iterrows():
             email = row["email"]
-
-            motivationalquotes = pd.read_csv("motivationalquotes.csv")
-
-            for index, row in motivationalquotes.iterrows():
-                motivationalquote = row["motivationalquote"]
-
-                subject = "*** Motivational Quotes ***"
-                send_email(email, subject, motivationalquote)
+            subject = "*** Motivational Quotes ***"
+            send_email(email, subject, motivationalquote)
 
     else :
         print(f"Sorry Today {day} Emails is only send on Monday")
