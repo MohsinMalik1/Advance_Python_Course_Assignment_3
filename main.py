@@ -25,7 +25,7 @@ def check_day():
     date = datetime.now()
     day = date.strftime("%A")
 
-    if day == "Thursday" :
+    if day == "Monday" :
 
         emails = pd.read_csv("emails.csv")
         motivationalquotes = pd.read_csv("motivationalquotes.csv")
